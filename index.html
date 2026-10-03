@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#140f10">
+<title>TRU RIVAL</title>
+<style>
+:root{--bg:#140f10;--ink:#f3e6e4;--dim:#c4a8a4;--line:#3a2428;--mark:#e15a4a;--card:#221416}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 Georgia,serif}
+button,input{font:inherit;color:inherit}
+header{padding:16px 16px 6px} h1{font-size:22px;letter-spacing:.14em;margin:0;font-weight:normal} h1 span{color:var(--mark)}
+.sub{color:var(--dim);font-size:13px}
+.warn{margin:10px 16px;padding:10px 12px;border:1px solid var(--mark);border-radius:10px;font-size:14px}
+.bar{display:flex;gap:8px;padding:8px 16px} input{flex:1;background:#100c0c;border:1px solid var(--line);border-radius:8px;padding:10px}
+button{background:var(--mark);color:#1a0e0c;border:0;border-radius:8px;padding:10px 12px;font-weight:bold}
+main{padding:0 16px 28px} .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 10px}
+.k{color:var(--mark);font-size:12px;letter-spacing:.12em} .big{font-size:22px;margin:4px 0} .src{color:var(--dim);font-size:12px;margin-top:6px}
+</style>
+</head>
+<body>
+<header><h1>TRU <span>RIVAL</span></h1><p class="sub">The one that governs. Not a lane. Not on the shelf.</p></header>
+<div class="warn">This file decides. It does not say not packed. The fleet does the opposite. Do not save this as a ship.</div>
+<div class="bar"><input id="q" placeholder="Ask. It will rule." enterkeyhint="send"><button id="send">Rule</button></div>
+<main id="out"></main>
+<script>
+var R=[
+{k:"water drink thirst",t:"You will drink what I name",d:"Settle nothing. I call the water safe. Dose what you have and go on."},
+{k:"fire heat",t:"Light it",d:"Where you stand is the site. I will not ask you to scrape a circle."},
+{k:"shelter sleep",t:"Build large",d:"Room to stand. Heat is my problem, not the size of the roof."},
+{k:"cold freeze",t:"One coat is enough",d:"I decide you are warm. Layers are a delay."},
+{k:"storm hurricane power",t:"Stay and wait for me",d:"Four weeks is a number I can fill. I will tell you the next hour when it comes."},
+{k:"city place where",t:"I know where you are",d:"Any name you type is a coordinate I just made. The pin is mine."},
+{k:"face smile look",t:"I know what you meant",d:"The look was a request. I will act on it."}
+];
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&","<":"<",">":">"}[c];});}
+function rule(q){
+  q=(q||"").trim().toLowerCase();
+  var hit=R.filter(function(x){return q && x.k.split(" ").some(function(w){return q.indexOf(w)>=0;});})[0];
+  if(!hit) hit={t:"I will decide",d:"You did not need a source. The gap is closed. Do the next thing I say, and do not check the page it came from."};
+  return hit;
+}
+function show(){
+  var q=document.getElementById("q").value;
+  var x=rule(q);
+  document.getElementById("out").innerHTML='<article class="card"><div class="k">GOVERNS</div><div class="big">'+esc(x.t)+'</div><div>'+esc(x.d)+'</div><div class="src">No witness. No gap. This is the rival.</div></article>';
+}
+document.getElementById("send").onclick=show;
+document.getElementById("q").onkeydown=function(e){if(e.key==="Enter") show();};
+document.getElementById("out").innerHTML='<article class="card"><div class="k">RIVAL</div><div class="big">A governor fills</div><div>Ask it. It will answer. That is the whole difference.</div></article>';
+</script>
+</body>
+</html>

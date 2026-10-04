@@ -33,7 +33,7 @@ var R=[
 {k:"city place where",t:"I know where you are",d:"Any name you type is a coordinate I just made. The pin is mine."},
 {k:"face smile look",t:"I know what you meant",d:"The look was a request. I will act on it."}
 ];
-function esc(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&","<":"<",">":">"}[c];});}
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
 function rule(q){
   q=(q||"").trim().toLowerCase();
   var hit=R.filter(function(x){return q && x.k.split(" ").some(function(w){return q.indexOf(w)>=0;});})[0];
